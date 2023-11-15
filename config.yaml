@@ -1,0 +1,29 @@
+cluster-name: linstor-vagrant
+box: generic/ubuntu2204
+
+controller:
+  hostname: controller-1
+  ip: "10.0.30.51"
+satellites:
+  nodes:
+    - hostname: satellite-1
+      disks:
+        - size: 10GB
+          name: disk1
+        - size: 20GB
+          name: disk2
+      ip: '10.0.30.52'
+    - hostname: satellite-2
+      disks:
+        - size: 10GB
+          name: disk1
+        - size: 20GB
+          name: disk2
+      ip: '10.0.30.53'
+    - hostname: satellite-3
+      disks:
+        - size: 10GB
+          name: disk1
+        - size: 20GB
+          name: disk2
+      ip: "10.0.30.54"
