@@ -1,0 +1,9 @@
+[netcom]
+    type="ssl"
+    port=3367
+    server_certificate="/etc/linstor/ssl/keystore.jks"
+    trusted_certificates="/etc/linstor/ssl/certificates.jks"
+    key_password="$KEYPASS"
+    keystore_password="$STOREPASS"
+    truststore_password="$STOREPASS"
+    ssl_protocol="TLSv1.2"

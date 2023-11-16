@@ -1,0 +1,14 @@
+[db]
+  user = "linstor"
+  password = "linstor"
+  connection_url = "jdbc:h2:/var/lib/linstor/linstordb"
+
+[https]
+    enabled = true
+    listen_addr = "::"
+    port = 3371
+    keystore=""
+    keystore_password=""
+
+    truststore=""
+    truststore_password=""

@@ -15,9 +15,7 @@ Vagrant.configure("2") do |config|
     vb.memory = "1024"
   end
 
-  config.vm.provision "shell", inline: <<-SHELL
-      sudo cp /vagrant/scripts/sources.list /etc/apt/sources.list
-  SHELL
+  config.vm.provision "shell", inline: "sudo cp /vagrant/scripts/sources.list /etc/apt/sources.list"
 
   # controllers
   config.vm.define settings['controller']['hostname'] do |controller|
@@ -29,6 +27,9 @@ Vagrant.configure("2") do |config|
     end
 
     controller.vm.provision "base", type: "shell", path: "scripts/base.sh"
+    if settings['mtls']['enabled'] == true
+      controller.vm.provision "mtls", type: "shell", inline: "sudo bash /vagrant/scripts/mtls_controller.sh"
+    end
     controller.vm.provision "controller", type: "shell", path: "scripts/controller.sh"
   end
 
@@ -48,6 +49,10 @@ Vagrant.configure("2") do |config|
       end
 
       node.vm.provision "base", type: "shell", path: "scripts/base.sh"
+      if settings['mtls']['enabled'] == true
+        node.vm.provision "mtls", type: "shell", inline: "sudo bash /vagrant/scripts/mtls_satellite.sh"
+      end
+
       node.vm.provision "satellite", type: "shell", env: {
         "CONTROLLERS" => settings['controller']['ip'],
       }, path: "scripts/satellite.sh"

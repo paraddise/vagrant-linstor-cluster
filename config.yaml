@@ -1,6 +1,9 @@
 cluster-name: linstor-vagrant
 box: generic/ubuntu2204
 
+mtls:
+  enabled: true
+
 controller:
   hostname: controller-1
   ip: "10.0.30.51"

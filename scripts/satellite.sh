@@ -9,4 +9,4 @@ cat /vagrant/scripts/linstor-client.conf.template | envsubst | sudo tee /etc/lin
 
 sudo systemctl enable --now linstor-satellite.service
 
-linstor node create "$(hostname)" "$local_ip" --node-type Satellite
+linstor node create $(hostname) "$local_ip" --node-type Satellite --communication-type SSL
